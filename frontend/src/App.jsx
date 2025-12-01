@@ -51,6 +51,8 @@ function App() {
 
     socket.emit("message", [name, message]);
 
+    setMessage("");
+
   }
 
   function incrementer(){
