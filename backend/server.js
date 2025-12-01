@@ -32,12 +32,6 @@ io.on("connection", (socket) => {
         io.emit('incrementation_server', data)
     })
 
-
-
-
-
-    
-
 });
 
 
