@@ -11,6 +11,7 @@ function App() {
 
   const [message, setMessage] = useState('');
   const [messages, setMessages]= useState([]);
+  const [name, setName] = useState('');
   
   function btnClic(){
     socket.emit("bouton", 'coucou les gens');
@@ -23,11 +24,16 @@ function App() {
 
     })
 
+    socket.on('message_reponse', (data) => {
 
+      setMessages((prev) => [...prev, data[0]+': '+data[1]]);
+    })
 
+  
 
     return () => {
       socket.off("bouton_reponse");
+      socket.off("message_reponse");
       
       
     }
@@ -47,6 +53,8 @@ function App() {
 
     setMessages((prev) => [...prev, "Moi: "+message]);
 
+    socket.emit("message", [name, message]);
+
     
 
   }
@@ -54,6 +62,14 @@ function App() {
   
   return (
     <>
+      <input 
+      type="text"
+      value={name}
+      onChange={(e) => setName(e.target.value)}
+      
+      />
+
+
       <h1>Exo Websocket</h1>
       <div><button onClick={btnClic}>Test</button></div>
 

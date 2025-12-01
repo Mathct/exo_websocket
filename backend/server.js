@@ -21,8 +21,15 @@ io.on("connection", (socket) => {
         socket.broadcast.emit("bouton_reponse", data);
     })
 
+    socket.on('message', (data) => {
+        console.log(data)
+        socket.broadcast.emit('message_reponse', data)
 
-    
+    })
+
+
+
+
 
     
 
