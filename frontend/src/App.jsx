@@ -31,9 +31,17 @@ function App() {
       setMessages((prev) => [...prev, data[0]+': '+data[1]]);
     })
 
+    socket.on('incrementation_server', (data) => {
+
+      setCounter(prev => prev + data[1]);
+      setMessages((prev) => [...prev, data[0]+' a incrementé le compteur de '+data[1]]);
+
+    })
+
     return () => {
       socket.off("bouton_reponse");
       socket.off("message_reponse");
+      socket.off("incrementation_server")
       
     }
 
@@ -57,6 +65,9 @@ function App() {
 
   function incrementer(){
 
+    socket.emit("incrementation", [name, inputcounter]);
+    setInputcounter(0);
+
   }
   
   
@@ -73,7 +84,7 @@ function App() {
         <input 
         type="number" 
         value={inputcounter}
-        onChange={(e) => setInputcounter(e.target.value)}
+        onChange={(e) => setInputcounter(Number(e.target.value))}
         />
 
         <button onClick={incrementer}>Incrementer</button>

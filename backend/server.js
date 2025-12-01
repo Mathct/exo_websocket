@@ -27,6 +27,11 @@ io.on("connection", (socket) => {
 
     })
 
+    socket.on('incrementation', (data) => {
+        console.log(data)
+        io.emit('incrementation_server', data)
+    })
+
 
 
 
