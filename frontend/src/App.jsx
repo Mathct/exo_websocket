@@ -12,6 +12,8 @@ function App() {
   const [message, setMessage] = useState('');
   const [messages, setMessages]= useState([]);
   const [name, setName] = useState('');
+  const [counter, setCounter] = useState(0)
+  const [inputcounter, setInputcounter] = useState(0)
   
   function btnClic(){
     socket.emit("bouton", 'coucou les gens');
@@ -68,6 +70,16 @@ function App() {
       onChange={(e) => setName(e.target.value)}
       
       />
+
+      <div>{counter}</div>
+      
+      <input 
+      type="number" 
+      value={inputcounter}
+      onChange={(e) => setInputcounter(e.target.value)}
+      />
+
+      <button onClick={incrementer}>Incrementer</button>
 
 
       <h1>Exo Websocket</h1>
