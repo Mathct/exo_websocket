@@ -12,10 +12,12 @@ function App() {
   const [message, setMessage] = useState('');
   const [messages, setMessages]= useState([]);
   const [name, setName] = useState('');
-
   const [counter, setCounter] = useState(0)
   const [inputcounter, setInputcounter] = useState(0)
   
+  function btnClic(){
+    socket.emit("bouton", 'coucou les gens');
+  }
 
   useEffect (() =>{
 
@@ -51,16 +53,15 @@ function App() {
 
   }
 
-
   function incrementer(){
 
   }
   
   
-  
   return (
     <>
 
+      <div><button onClick={btnClic}>Test</button></div>
 
       <h1>Exo Websocket</h1>
 

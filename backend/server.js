@@ -15,7 +15,12 @@ const io = new Server(server, {
 
 io.on("connection", (socket) => {
 
-    
+    socket.on("bouton", (data) => {
+        console.log(data, socket.id)
+
+        socket.broadcast.emit("bouton_reponse", data);
+    })
+
     socket.on('message', (data) => {
         console.log(data)
         socket.broadcast.emit('message_reponse', data)
