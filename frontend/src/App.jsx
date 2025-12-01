@@ -31,17 +31,11 @@ function App() {
       setMessages((prev) => [...prev, data[0]+': '+data[1]]);
     })
 
-  
-
     return () => {
       socket.off("bouton_reponse");
       socket.off("message_reponse");
       
-      
     }
-
-
-
 
   }, [])
 
@@ -57,34 +51,44 @@ function App() {
 
     socket.emit("message", [name, message]);
 
-    
+  }
+
+  function incrementer(){
 
   }
   
   
   return (
     <>
-      <input 
-      type="text"
-      value={name}
-      onChange={(e) => setName(e.target.value)}
-      
-      />
 
-      <div>{counter}</div>
-      
-      <input 
-      type="number" 
-      value={inputcounter}
-      onChange={(e) => setInputcounter(e.target.value)}
-      />
-
-      <button onClick={incrementer}>Incrementer</button>
-
-
-      <h1>Exo Websocket</h1>
       <div><button onClick={btnClic}>Test</button></div>
 
+      <h1>Exo Websocket</h1>
+
+      <h2>Compteur</h2>
+      <div>Count: {counter}</div>
+      <div>
+        <input 
+        type="number" 
+        value={inputcounter}
+        onChange={(e) => setInputcounter(e.target.value)}
+        />
+
+        <button onClick={incrementer}>Incrementer</button>
+      </div>
+
+      
+      <h2>Tchat</h2>
+      <div>
+        <span>Mon prénom: </span>
+        <input 
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        />
+      </div>
+
+      
       <input type="text"
        value={message}
        onChange={(e) => setMessage(e.target.value)}
